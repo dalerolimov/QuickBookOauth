@@ -1,0 +1,30 @@
+﻿@page "/"
+@using Intuit.Ipp.OAuth2PlatformClient
+
+<h1>Hello, world!</h1>
+
+<button @onclick="Redirect">Connect to Quickbook</button>
+
+@code
+{   
+    public NavigationManager NavigationManager { get; set; }
+    private const string ClientId = "AB982kbi6DYVFZK8Ea4oaQDkss3SJmUSYjR7OJMDa2zIOiRBtS";
+    private const string ClientSecret = "3PyFAlJ3bDPG0uGuHWqvYAUFosOjVPsv1qE0dZeZ";
+    private const string RedirectUrl = "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl";
+    private const string Environment = "";
+    private readonly OAuth2Client _oauthClient = new OAuth2Client(ClientId, ClientSecret, RedirectUrl, Environment);
+
+    private string GetAuthorizeUrl()
+    {
+        //Prepare scopes
+        var scopes = new List<OidcScopes> { OidcScopes.Accounting };
+
+        //Get the authorization URL
+        return _oauthClient.GetAuthorizationURL(scopes);
+    }
+
+    private void Redirect()
+    {
+        NavigationManager.NavigateTo(GetAuthorizeUrl());
+    }
+}
