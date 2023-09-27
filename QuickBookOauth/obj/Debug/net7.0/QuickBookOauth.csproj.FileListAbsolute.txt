@@ -26,3 +26,4 @@ C:\repos\QuickBookOauth\QuickBookOauth\obj\Debug\net7.0\refint\QuickBookOauth.dl
 C:\repos\QuickBookOauth\QuickBookOauth\obj\Debug\net7.0\QuickBookOauth.pdb
 C:\repos\QuickBookOauth\QuickBookOauth\obj\Debug\net7.0\QuickBookOauth.genruntimeconfig.cache
 C:\repos\QuickBookOauth\QuickBookOauth\obj\Debug\net7.0\ref\QuickBookOauth.dll
+C:\repos\QuickBookOauth\QuickBookOauth\obj\Debug\net7.0\QuickBookOauth.csproj.AssemblyReference.cache

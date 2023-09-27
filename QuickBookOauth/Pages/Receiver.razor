@@ -1,0 +1,34 @@
+﻿@page "/Receiver"
+@using System.Web
+@using QuickBookOauth.Entities
+@inject IHttpContextAccessor HttpContextAccessor
+@inject HttpClient HttpClient
+
+<h3>Receiver</h3>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        if (HttpContextAccessor.HttpContext != null)
+        {
+            string query = HttpContextAccessor.HttpContext.Request.QueryString.Value ?? "";
+
+            var queryString = HttpUtility.ParseQueryString(query);
+
+            var authcode = queryString["code"];
+            var realmId = queryString["realmId"];
+            var state = queryString["state"];
+
+            var authClaims = new AuthClaims
+            {
+                Code = authcode,
+                RealmId = realmId,
+                State = state
+            };
+
+
+            var response = await HttpClient.PostAsJsonAsync("http://localhost:5110/api/Auth/AuthorizationCode", authClaims);
+        }
+    }
+
+}
