@@ -15,9 +15,9 @@
 
             var queryString = HttpUtility.ParseQueryString(query);
 
-            var authcode = queryString["code"];
-            var realmId = queryString["realmId"];
-            var state = queryString["state"];
+            var authcode = queryString["code"] ?? "";
+            var realmId = queryString["realmId"] ?? "";
+            var state = queryString["state"] ?? "";
 
             var authClaims = new AuthClaims
             {
