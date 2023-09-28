@@ -13,17 +13,19 @@ public class AuthController : ControllerBase
     private const string Environment = "sandbox";
     private const string RedirectUri = "https://localhost:44306/receiver";
     private readonly OAuth2Client _oAuth2Client;
-    
+
     public AuthController()
     {
         _oAuth2Client = new OAuth2Client(ClientId, ClientSecret, RedirectUri, Environment);
     }
-    
+
     [HttpPost]
     public async Task<string> AuthorizationCode(AuthClaims auth)
     {
-        var token = await _oAuth2Client.GetBearerTokenAsync(auth.Code); 
+        var token = await _oAuth2Client.GetBearerTokenAsync(auth.Code);
         
+        HttpContext.Response.Cookies.Append("someCookie", "someValue");
+
         return token.AccessToken;
     }
 }
